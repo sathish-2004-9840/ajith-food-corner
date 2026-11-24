@@ -1,0 +1,4 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Staff Login | Ajith Food Corner</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body class="admin-login-page"><form class="login-card" method="post"><span class="eyebrow">AJITH FOOD CORNER</span><h1>Staff <em>login</em></h1><p>Sign in to manage incoming orders.</p>
+{% with messages = get_flashed_messages() %}{% for message in messages %}<div class="alert">{{ message }}</div>{% endfor %}{% endwith %}
+<label>Username<input name="username" required></label><label>Password<input name="password" type="password" required></label><button class="btn btn-dark full-btn">Sign in →</button><a class="back-link" href="/">← Back to restaurant</a></form></body></html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ajith Food Corner | Chennai</title>
+  <meta name="description" content="Order delicious South Indian favourites, biryani and more from Ajith Food Corner, Chennai.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="#"><span class="brand-mark">AFC</span><span><b>Ajith Food Corner</b><small>GOOD FOOD. GOOD MOOD.</small></span></a>
+  <nav><a href="#menu">Menu</a><a href="#story">Our Story</a><a href="#visit">Visit Us</a></nav>
+  <button class="cart-nav" id="jump-cart">Your order <span id="nav-count">0</span></button>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <span class="eyebrow light">A LITTLE TASTE OF CHENNAI</span>
+    <h1>Flavours that<br><em>feel like home.</em></h1>
+    <p>Freshly prepared favourites, made with heart and served with a generous side of hospitality.</p>
+    <a class="btn btn-gold" href="#menu">Explore the menu <span>→</span></a>
+    <div class="hero-note"><span>✦</span> Freshly cooked · Made to order · Chennai</div>
+  </div>
+  <div class="hero-stamp"><b>100%</b><span>HUNGRY<br>HAPPY</span></div>
+</section>
+
+<section class="benefits">
+  <div><span>♨</span><p><b>Made fresh</b><small>Prepared when you order</small></p></div>
+  <div><span>✦</span><p><b>Local favourites</b><small>South Indian comfort food</small></p></div>
+  <div><span>⌁</span><p><b>Easy ordering</b><small>Pickup or doorstep delivery</small></p></div>
+</section>
+
+<section class="menu-section section-wrap" id="menu">
+  <div class="section-heading"><div><span class="eyebrow">FROM OUR KITCHEN</span><h2>Explore the <em>menu.</em></h2></div>
+    <div class="search-box"><span>⌕</span><input id="menu-search" type="search" placeholder="Search dishes..."></div>
+  </div>
+  <div class="category-row" id="categories"></div>
+  <div class="menu-grid" id="menu-grid"><div class="loading">Preparing the menu...</div></div>
+</section>
+
+<section class="story-section" id="story">
+  <div class="story-photo"></div>
+  <div class="story-copy"><span class="eyebrow">A PLACE AT OUR TABLE</span><h2>Good food brings<br><em>people together.</em></h2>
+    <p>At Ajith Food Corner, every plate is an invitation to slow down and enjoy the simple pleasure of a satisfying meal. From familiar tiffin favourites to hearty biryani, there's something for every appetite.</p>
+    <div class="signature">Made with care, served with pride <span>♥</span></div>
+  </div>
+</section>
+
+<section class="visit-section section-wrap" id="visit">
+  <div><span class="eyebrow">COME BY OR ORDER IN</span><h2>Your next favourite<br><em>meal is waiting.</em></h2></div>
+  <div class="visit-card"><div class="visit-icon">⌖</div><div><b>Ajith Food Corner</b><p>Chennai, Tamil Nadu</p><small>Update this section with the verified street address and opening hours before launch.</small></div></div>
+</section>
+</main>
+
+<aside class="poster" id="cart-panel">
+  <div class="poster-pin"></div>
+  <div class="poster-top"><span>AJITH FOOD CORNER</span><span>✦ EST. CHENNAI ✦</span></div>
+  <div class="poster-title"><small>YOUR TABLE, YOUR WAY</small><h3>Order<br><em>summary</em></h3></div>
+  <div id="cart-items" class="cart-items"><div class="empty-cart"><span>🍽️</span><b>Your plate is waiting.</b><small>Add something delicious from the menu.</small></div></div>
+  <div class="cart-totals">
+    <div><span>Subtotal</span><b id="subtotal">₹0</b></div>
+    <div><span>Delivery</span><b id="delivery-fee">₹0</b></div>
+    <div class="grand-total"><span>Total</span><b id="total">₹0</b></div>
+  </div>
+  <button class="btn btn-dark checkout-open" id="checkout-open" disabled>Continue to checkout <span>→</span></button>
+  <div class="poster-foot">THANK YOU FOR SUPPORTING LOCAL FOOD ♥</div>
+</aside>
+
+<div class="modal-backdrop" id="checkout-modal">
+  <div class="modal">
+    <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+    <span class="eyebrow">ALMOST THERE</span><h2>Complete your <em>order.</em></h2>
+    <form id="checkout-form">
+      <label>Your name<input name="name" required minlength="2" placeholder="Name"></label>
+      <label>Mobile number<input name="phone" required inputmode="tel" placeholder="10-digit mobile number"></label>
+      <div class="order-type"><label><input type="radio" name="order_type" value="pickup" checked> Pickup</label><label><input type="radio" name="order_type" value="delivery"> Delivery (+₹30)</label></div>
+      <label id="address-label" class="hidden">Delivery address<textarea name="address" rows="2" placeholder="House no., street, area, Chennai"></textarea></label>
+      <label>Special instructions (optional)<textarea name="notes" rows="2" placeholder="Less spicy, no onion..."></textarea></label>
+      <div class="payment-note">Payment: Pay at counter / Cash on delivery</div>
+      <button class="btn btn-dark full-btn" type="submit">Place my order <span>→</span></button>
+    </form>
+    <div id="checkout-message" class="form-message"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<footer><span>© 2026 Ajith Food Corner</span><span>Chennai, Tamil Nadu · <a href="/admin/login">Staff login</a></span></footer>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body></html>

@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Orders | Ajith Food Corner</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body class="admin-page"><header class="admin-header"><a class="brand" href="/"><span class="brand-mark">AFC</span><span><b>Ajith Food Corner</b><small>ORDER CONTROL</small></span></a><a class="btn btn-dark" href="/admin/logout">Log out</a></header>
+<main class="admin-main"><span class="eyebrow">RESTAURANT OPERATIONS</span><h1>Order <em>dashboard.</em></h1><p class="admin-sub">Recent customer orders. Update each order as it moves through the kitchen.</p>
+<div class="orders-list">{% for order in orders %}<article class="order-card"><div class="order-card-head"><div><span class="order-code">{{ order.order_code }}</span><h3>{{ order.customer_name }}</h3><small>{{ order.phone }} · {{ order.created_at }}</small></div><b class="order-price">₹{{ '%.0f'|format(order.total) }}</b></div>
+<div class="order-meta"><span>{{ order.order_type|title }}</span>{% if order.address %}<span>{{ order.address }}</span>{% endif %}</div>
+<ul>{% for item in order.items %}<li>{{ item.qty }} × {{ item.name }} <span>₹{{ '%.0f'|format(item.line_total) }}</span></li>{% endfor %}</ul>
+{% if order.notes %}<p class="order-notes">Note: {{ order.notes }}</p>{% endif %}
+<div class="status-row"><label>Status <select data-order="{{ order.id }}" class="status-select">{% for status in ['Received','Preparing','Ready','Out for delivery','Completed','Cancelled'] %}<option {% if order.status == status %}selected{% endif %}>{{ status }}</option>{% endfor %}</select></label><span class="status-current">{{ order.status }}</span></div>
+</article>{% else %}<div class="empty-admin">No orders yet. New customer orders will appear here.</div>{% endfor %}</div></main>
+<script>
+document.querySelectorAll('.status-select').forEach(select => select.addEventListener('change', async () => {
+  const response = await fetch(`/admin/orders/${select.dataset.order}/status`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:select.value})});
+  if(response.ok){select.closest('.order-card').querySelector('.status-current').textContent=select.value;}
+  else alert('Could not update order status. Please try again.');
+}));
+</script></body></html>
